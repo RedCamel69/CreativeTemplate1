@@ -1,0 +1,868 @@
+﻿@page "/"
+
+@using BlazorApp.Client.Services.ClassesService
+
+@inject IJSRuntime JS
+@inject NavigationManager Navigation;
+@inject IClassesService ClassService
+
+
+<PageTitle>Index</PageTitle>
+
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex justify-content-center align-items-center header-transparent">
+
+    <nav id="navbar" class="navbar @NavMenuCssClass">
+        <ul>
+            <li><a class="nav-link scrollto @HomeMenuCssClassActive" @onclick="HandleHomeClick" href="/">Home</a></li>
+            <li><a class="nav-link scrollto @AboutMenuCssClassActive" @onclick="ScrollToAboutAndCloseNamMenu">About</a></li>
+            <li><a class="nav-link scrollto @ClassesMenuCssClassActive" @onclick="ScrollToClassesAndCloseNamMenu">Classes</a></li>
+            <!-- <li><a class="nav-link scrollto" href="#services">Services</a></li>
+            <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
+            <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+              <ul>
+                <li><a href="#">Drop Down 1</a></li>
+                <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                  <ul>
+                    <li><a href="#">Deep Drop Down 1</a></li>
+                    <li><a href="#">Deep Drop Down 2</a></li>
+                    <li><a href="#">Deep Drop Down 3</a></li>
+                    <li><a href="#">Deep Drop Down 4</a></li>
+                    <li><a href="#">Deep Drop Down 5</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Drop Down 2</a></li>
+                <li><a href="#">Drop Down 3</a></li>
+                <li><a href="#">Drop Down 4</a></li>
+              </ul>
+            </li> -->
+            <li><a class="nav-link scrollto @ContactMenuCssClassActive" @onclick="ScrollToContactAndCloseNamMenu">Contact</a></li>
+            <li><a class="nav-link scrollto @TestimomialMenuCssClassActive" href="/testimonials">Testimonials</a></li>
+            <li><a class="nav-link scrollto " href="/workshops">Workshops</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle" @onclick="ToggleNavMenu"></i>
+    </nav><!-- .navbar -->
+
+</header><!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+<section id="hero">
+    <div class="hero-container">
+        <h1>Lorraine Connell</h1>
+        <h2>Yoga in Hatch and Tisbury</h2>
+        <a onclick="document.getElementById('classes').scrollIntoView({behavior:'smooth'})" class="btn-scroll scrollto" title="Scroll Down"><i class="bx bx-chevron-down"></i></a>
+    </div>
+</section><!-- End Hero -->
+
+<!-- ======= About Yoga Section ======= -->
+<section id="why-yoga" class="yoga">
+    <div class="container">
+
+        <div class="section-title">
+            <span>Why Yoga</span>
+            <h2>Why Yoga</h2>
+            <p>
+                There are many schools of yoga and many explanations about what yoga is and isn’t.
+            </p>
+            <p>
+                While it can be fun to see adverts and instagram posts of (usually conventionally beautiful!) people in seemingly impossible contortions (and we may choose to selectively and mindfully explore accessible variations ourselves!), most of the yoga I do and teach at fifty focuses on simple movements. In classes, we explore the natural range of motion of the spine, neck, shoulders, hips and legs.
+            </p>
+            <p>
+                The yoga postures (also known as asanas), I practice and teach are generally referred to as Hatha yoga, and combine a mix of stretches and postures (often gentle, sometimes with more challenging options), flowing movements (Vinyasa flow), longer holds (Yin yoga) and relaxing supported poses (Restorative yoga).
+
+            </p>
+            <p>
+                With practice, these physical movements and spending time in stillness, together with some breathwork and perhaps meditation, help us to regain and maintain physical flexibility in our joints and muscles.
+            </p>
+
+            <p>This type of yoga practice can help us to become more aware of and more at ease in our bodies. Over time, we may feel stronger, more flexible and more comfortable in everyday life .. to enjoy simple pleasures like walking up hills and over stiles, playing other sports, reaching for things on the top shelf and sleeping comfortably at night.</p>
+            <p>People often start practising yoga, drawn by the physical benefits of flexibility and strength. Over time they may find they enjoy and appreciate the breathwork (pranayama) and mindfulness or meditation (dharana/dhyana), which form part of what differentiates yoga from other valuable (done well) movement practices, like gym work-outs, studio classes or pilates.</p>
+            <p>Ultimately practising yoga may help us to feel more at ease, not only in our bodies, but in our heads and in life in general. We may experience more mental quanimity with others and with the world around us. We find it easier to observe, to accept and be, rather than needing to do, to make happen and to control.</p>
+            <p>Over the past 15 years of regular yoga practice, I have explored many different styles of yoga with teachers in London and elsewhere. I am particularly grateful to Kate, Catherine and James as mentioned above, as well as Aki Omori, Erika Tourell and Norman Blair for their classes and teachings.</p>
+
+
+
+        </div>
+
+
+
+    </div>
+
+    <div class="container">
+        <div class="row">
+            @* <div class="col-sm-6"><img src="/assets/img/pythouse1.webp" class="rounded float-start img-thumbnail" alt="..."></div> *@
+            <div class="col-sm-4"><img src="/assets/img/pythouse-yoga-3.jpg" class="rounded float-end img-thumbnail" alt="..."></div>
+            <div class="col-sm-4"><img src="/assets/img/pythouse-yoga-6.jpg" class="rounded float-start img-thumbnail" alt="..."></div>
+            <div class="col-sm-4"><img src="/assets/img/pythouse-yoga-2.jpg" class="rounded float-start img-thumbnail" alt="..."></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12"><img src="/assets/img/pythouse-yoga-7.jpg" class="rounded float-start img-thumbnail" alt="..."></div>
+            @* <div class="col-sm-6"><img src="/assets/img/pythouse-yoga-3.jpg" class="rounded float-end img-thumbnail" alt="..."></div> *@
+        </div>
+    </div>
+</section>
+<!-- ======= End About Yoga Section ======= -->
+
+<!-- ======= About Me Section ======= -->
+<section id="about" class="about">
+    <div class="container">
+
+        <div class="section-title">
+            <span>About Me</span>
+            <h2>About Me</h2>
+        </div>
+        <div class="row">
+            <div class="image d-flex align-items-stretch justify-content-center justify-content-lg-start"></div>
+        </div>
+        <div class="row">
+            <div class="d-flex flex-column align-items-stretch">
+                <div class="content ps-lg-8 d-flex flex-column justify-content-center">
+                    <div class="row" style="padding-top: 1em">
+                        <p>I first tried yoga in the early 2000s at gym-based classes when I was working in an office job in London. Yoga felt complementary to other sports I was doing then (triathlons and gym work-outs) and an antidote to long days in the office. But ultimately, I found I enjoyed the feeling of stretching, of being in my body and the sense of deep physical and mental relaxation, both during and after each class.</p>
+                        <p>It might sound evangelical, but I grew to love yoga. I started to practise more regularly (a few times a week rather than just once) and went on yoga holidays/retreats with a few different teachers. I think (details now blurred in the mists of time) it was my husband who asked me in late 2011 or early 2012 if I might do a yoga teacher training course. I quickly decided that it was a great idea and, spoiled for choice in London, started a 2-year 400-hour teacher training (TT) course with Triyoga in the Summer of 2012.</p>
+                        <p>I loved the TT course at Triyoga, with experienced teachers Kate Ellis and Catherine Annis, and will forever be grateful for their expert guidance, as well as the yoga philosophy I learned from from Carlos Poneda and yoga anatomy from Chris Swain. I was then fortunate to have the opportunity to rejoin the Triyoga course from 2014-2016 as a teaching assistant.</p>
+                        <p>Although I was still working in an office job, I continued practising, teaching and learning about yoga from 2016-2020. One highlight was a 18-month course with Kate Ellis focused on “Teaching Yoga one-to-one”, also drawing on Kate’s work in Embodied Relational Yoga Therapy. I attended many insightful multi-day workshops, including with Donna Farhi, Richard Rosen, Matthew Sanford, John Stirk and Sally Kempton. I also fell into a happy rhythm of going on retreat twice a year with inspiring and gifted Spanish-based teacher James Jewell.</p>
+                        <p>During the pandemic and lockdowns of 2020-2021, my practice was exclusively home-based, and I was grateful for both my own home practice and for the wealth of video classes on YouTube (which get easier to navigate when you know who’s who and what you’re looking for !). I also taught Zoom classes to friends and invited donations to charities of their choice. I was grateful for the connection to yoga and to others.</p>
+                        <p>In 2024, a decade after completing my first Teacher Training and with the support of some special people I’ve met at Pythouse Tennis Club in Hatch, I am now exploring teaching yoga as my primary profession. It feels exciting, a little scary, and just right. If my story and the yoga I talk about on this website speak to you, I would love to meet you on the mat soon.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End About Me Section -->
+
+<!-- ======= My Classes Section ======= -->
+<section id="classes" class="class">
+            <div class="container">
+
+                <div class="section-title">
+                    <span>Classes</span>
+                    <h2>Classes</h2>
+            <p>Small group classes (maximum 10 students)</p>
+                    <div class="row" style="margin-top: 1em;margin-bottom: 1em;">
+                        <div class="col-lg-12">
+
+                            <div class="row">
+                                <div class="col-md-12">
+
+                            @if (ClassService.FirstPageDisplayClasses == null || ClassService.FirstPageDisplayClasses.Count == 0)
+                            {
+                                <div class="info-box" style="color: #444444;text-align: center;box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);padding: 20px 0 30px 0;">
+                                    <h3>@DateTime.Now.ToString("MMMM yyyy")</h3>
+                                    <h4>At Pythouse (Tennis) Clubhouse, Hatch</h4>
+                                    <ul style="list-style: none;padding-left:0em">
+                                        <li>Monday 5-6pm</li>
+                                        <li>Tuesday 11am-12pm</li>
+                                        <li>Wednesday 6-7pm <strong>(NB - no class on Weds 17 Jan)</strong></li>
+                                        <li>Saturday 10-11am</li>
+                                    </ul>
+
+                                    <h4>At the Nadder Centre, Tisbury</h4>
+                                    <ul style="list-style: none;padding-left:0em">
+                                        <li>Thursday 11am-12pm</li>
+                                    </ul>
+
+                                    <p>
+                                        I also teach one-to-one (drawing on the specialised training I mention in the “About
+                                        Me” section). Although more expensive, a regular or occasional one-to-one lesson
+                                        provides the opportunity to focus on what you most want to practice, and you can
+                                        apply the feedback and tailored cues in subsequent group classes.
+                                    </p>
+
+
+                                </div>
+                            }
+                            else{
+
+                            <div class="info-box" style="color: #444444;text-align: center;box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);padding: 20px 0 30px 0;">
+
+                                <h3>@DateTime.Now.ToString("MMMM yyyy")</h3>
+
+                                @if (ClassService.FirstPageDisplayClasses.Where(x => x.Location.Contains("Pythouse")).Count() > 0)
+                                {
+                                    <h4>At Pythouse (Tennis) Clubhouse, Hatch</h4>
+                                }
+                                
+                                <ul style="list-style: none;padding-left:0em">
+                                        @foreach (var cl in ClassService.FirstPageDisplayClasses.Where(x => x.Location.Contains("Pythouse")))
+                                    {
+                                        <li>
+                                            @cl.Name @cl.DisplayStartTime - @cl.DisplayEndTime <strong>@cl.SpecialNotes</strong>
+                                            </li>
+                                    }
+                                </ul>
+
+                                    @if (ClassService.FirstPageDisplayClasses.Where(x => x.Location.Contains("Nadder")).Count() > 0)
+                                {
+                                    <h4>At the Nadder Centre, Tisbury</h4>
+                                }
+                                
+                                <ul style="list-style: none;padding-left:0em">
+                                        @foreach (var cl in ClassService.FirstPageDisplayClasses.Where(x => x.Location.Contains("Nadder")))
+                                    {
+                                        <li>
+                                            @cl.Name @cl.DisplayStartTime - @cl.DisplayEndTime <strong>@cl.SpecialNotes</strong>
+                                        </li>
+                                    }
+                                </ul>
+
+                                <p>
+                                    I also teach one-to-one (drawing on the specialised training I mention in the “About
+                                    Me” section). Although more expensive, a regular or occasional one-to-one lesson
+                                    provides the opportunity to focus on what you most want to practice, and you can
+                                    apply the feedback and tailored cues in subsequent group classes.
+                                </p>
+
+
+                            </div>
+                            }
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                     <div class="row" style="margin-top: 1em;margin-bottom: 1em;">
+                        <div class="col-lg-12">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="info-box" style="color: #444444;text-align: center;box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);padding: 20px 0 30px 0;">
+                              
+
+                                <ul style="list-style: none;padding-left:0em">
+                                    <li>
+                                        £10 per class, or £40 for 5 paid upfront (valid for 1 month from date of purchase).
+                                        Cash on arrival or bank transfer
+                                    </li>
+                                    <hr />
+                                    <li>
+                                        £10 for 2 students if you bring a friend who hasn’t been to my classes before
+                                    </li>
+                                    <hr />
+                                    <li>
+                                        One-to-one, £50 for one hour at Pythouse Clubhouse or subsequently at your home
+                                    </li>
+                                    <hr />
+                                    <li>
+                                        Advance booking required
+                                    </li>
+                                    <hr />
+                                    <li>
+                                        I have spare mats but please bring your own if you have one and any props you like
+                                        to work with
+                                    </li>
+                                    <hr />
+                                    <li>
+
+                                        I ask all students to complete a health questionnaire (to understand any poses which
+                                        might not be suitable
+                                    </li>
+                                    <hr />
+                                    <li>
+                                        Absolute beginners are absolutely welcome! I will also offer options for those with
+                                        more yoga experience
+                                    </li>
+                                    <li>
+                                        I ask all students to complete a health questionnaire (to understand any poses which
+                                        might not be suitable
+
+                                    </li>
+                                </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       </div>
+                       
+                    <div class="row" style="margin-top: 1em;margin-bottom: 1em;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20064.7106362662!2d-2.163002530379301!3d51.051447571595325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4873c914185d3363%3A0xb8afdbfcea834a28!2sPythouse%20Tennis%20Club!5e0!3m2!1sen!2suk!4v1699034157800!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            @* <div class="col-sm-6"><img src="/assets/img/pythouse1.webp" class="rounded float-start img-thumbnail" alt="..."></div> *@
+                 <div class="col-sm-6"><img src="/assets/img/pythouse-yoga-1.jpg" class="rounded float-end img-thumbnail" alt="..."></div>
+                    <div class="col-sm-6"><img src="/assets/img/pythouse-yoga-5.jpg" class="rounded float-start img-thumbnail" alt="..."></div>
+                </div>
+                        <div class="row">
+                    <div class="col-sm-12"><img src="/assets/img/pythouse-yoga-2.jpg" class="rounded float-start img-thumbnail" alt="..."></div>
+                    @* <div class="col-sm-6"><img src="/assets/img/pythouse-yoga-3.jpg" class="rounded float-end img-thumbnail" alt="..."></div> *@
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 1em;margin-bottom: 1em;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5014.560514649738!2d-2.0912608842477125!3d51.06637635798533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4873c8a5f54da185%3A0x1ef3320fcc5ab552!2sNadder%20Centre!5e0!3m2!1sen!2suk!4v1704713559810!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6"><img src="/assets/img/nadder1.webp" class="rounded float-start img-thumbnail" alt="..." ></div>
+                    <div class="col-sm-6"><img src="/assets/img/nadder1.webp" class="rounded float-end img-thumbnail" alt="..."></div>
+                </div>               
+            </div>
+
+                </div>
+
+
+        
+    </div>
+</section>
+<!-- End My Classes Section -->
+
+<!-- ======= Contact Me Section ======= -->
+<section id="contact" class="contact">
+    <div class="container">
+
+        <div class="section-title">
+            <span>Contact Me</span>
+            <h2>Contact Me</h2>
+            <p>Please contact me if you have any questions.  I hope to meet you at a class soon.</p>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="row">
+                    <!-- <div class="col-md-12">
+                      <div class="info-box">
+                        <i class="bx bx-share-alt"></i>
+                        <h3>Social Profiles</h3>
+                        <div class="social-links">
+                          <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                          <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
+                          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                      </div>
+                    </div> -->
+                    @*   <div class="col-md-6">
+                    <div class="info-box mt-4">
+                    <i class="bx bx-envelope"></i>
+                    <h3>Email Me</h3>
+                    <p>contact@example.com</p>
+                    </div>
+                    </div> *@
+                    @*  <div class="col-md-6">
+                    <div class="info-box mt-4">
+                    <i class="bx bx-envelope"></i>
+                    <h3>Email Me</h3>
+                    <p>contact@example.com</p>
+                    </div>
+                    </div> *@
+                    <div class="col-md-12">
+                        <div class="info-box mt-4">
+                           
+                            <a href="sms:+4407864214756">
+                                <i class="bx bx-phone-call"></i>
+                                <h3>Text</h3>
+                                07720 236 536
+                            </a>
+                            <br />
+                            <br />
+                            I also have a dedicated whatsapp group - please ask for details.
+                         
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- <div class="col-lg-6">
+              <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  </div>
+                  <div class="col-md-6 form-group mt-3 mt-md-0">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  </div>
+                </div>
+                <div class="form-group mt-3">
+                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                </div>
+                <div class="form-group mt-3">
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                </div>
+                <div class="my-3">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+                </div>
+                <div class="text-center"><button type="submit">Send Message</button></div>
+              </form>
+            </div> -->
+
+        </div>
+
+    </div>
+</section>
+<!-- End Contact Me Section -->
+
+
+
+        <!-- ======= My Portfolio Section ======= -->
+        <!-- <section id="portfolio" class="portfolio">
+          <div class="container">
+
+            <div class="section-title">
+              <span>My Portfolio</span>
+              <h2>My Portfolio</h2>
+              <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+            </div>
+
+            <ul id="portfolio-flters" class="d-flex justify-content-center">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">App</li>
+              <li data-filter=".filter-card">Card</li>
+              <li data-filter=".filter-web">Web</li>
+            </ul>
+
+            <div class="row portfolio-container">
+
+              <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt=""></div>
+                <div class="portfolio-info">
+                  <h4>App 1</h4>
+                  <p>App</p>
+                  <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt=""></div>
+                <div class="portfolio-info">
+                  <h4>Web 3</h4>
+                  <p>Web</p>
+                  <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt=""></div>
+                <div class="portfolio-info">
+                  <h4>App 2</h4>
+                  <p>App</p>
+                  <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt=""></div>
+                <div class="portfolio-info">
+                  <h4>Card 2</h4>
+                  <p>Card</p>
+                  <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt=""></div>
+                <div class="portfolio-info">
+                  <h4>Web 2</h4>
+                  <p>Web</p>
+                  <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt=""></div>
+                <div class="portfolio-info">
+                  <h4>App 3</h4>
+                  <p>App</p>
+                  <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt=""></div>
+                <div class="portfolio-info">
+                  <h4>Card 1</h4>
+                  <p>Card</p>
+                  <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt=""></div>
+                <div class="portfolio-info">
+                  <h4>Card 3</h4>
+                  <p>Card</p>
+                  <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt=""></div>
+                <div class="portfolio-info">
+                  <h4>Web 3</h4>
+                  <p>Web</p>
+                  <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section> -->
+        <!-- End My Portfolio Section -->
+        <!-- ======= Pricing Section ======= -->
+        <!-- <section id="pricing" class="pricing">
+          <div class="container">
+
+            <div class="section-title">
+              <span>Pricing</span>
+              <h2>Pricing</h2>
+              <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+            </div>
+
+            <div class="row">
+
+              <div class="col-lg-3 col-md-6">
+                <div class="box">
+                  <h3>Free</h3>
+                  <h4><sup>$</sup>0<span> / month</span></h4>
+                  <ul>
+                    <li>Aida dere</li>
+                    <li>Nec feugiat nisl</li>
+                    <li>Nulla at volutpat dola</li>
+                    <li class="na">Pharetra massa</li>
+                    <li class="na">Massa ultricies mi</li>
+                  </ul>
+                  <div class="btn-wrap">
+                    <a href="#" class="btn-buy">Buy Now</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
+                <div class="box featured">
+                  <h3>Business</h3>
+                  <h4><sup>$</sup>19<span> / month</span></h4>
+                  <ul>
+                    <li>Aida dere</li>
+                    <li>Nec feugiat nisl</li>
+                    <li>Nulla at volutpat dola</li>
+                    <li>Pharetra massa</li>
+                    <li class="na">Massa ultricies mi</li>
+                  </ul>
+                  <div class="btn-wrap">
+                    <a href="#" class="btn-buy">Buy Now</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+                <div class="box">
+                  <h3>Developer</h3>
+                  <h4><sup>$</sup>29<span> / month</span></h4>
+                  <ul>
+                    <li>Aida dere</li>
+                    <li>Nec feugiat nisl</li>
+                    <li>Nulla at volutpat dola</li>
+                    <li>Pharetra massa</li>
+                    <li>Massa ultricies mi</li>
+                  </ul>
+                  <div class="btn-wrap">
+                    <a href="#" class="btn-buy">Buy Now</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+                <div class="box">
+                  <span class="advanced">Advanced</span>
+                  <h3>Ultimate</h3>
+                  <h4><sup>$</sup>49<span> / month</span></h4>
+                  <ul>
+                    <li>Aida dere</li>
+                    <li>Nec feugiat nisl</li>
+                    <li>Nulla at volutpat dola</li>
+                    <li>Pharetra massa</li>
+                    <li>Massa ultricies mi</li>
+                  </ul>
+                  <div class="btn-wrap">
+                    <a href="#" class="btn-buy">Buy Now</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>End Pricing Section -->
+<!-- ======= Testimonials Section ======= -->
+
+
+@* <section id="testimonials" class="testimonials">
+    <div class="container position-relative">
+
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item testimonial-item active">
+                    <div class="testimonial-item">
+                    <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                    <h3>Saul Goodman</h3>
+                    <h4>Ceo &amp; Founder</h4>
+                    <p>
+                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                        Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                    </p>
+                    @* </div> 
+                </div>
+
+                <div class="carousel-item testimonial-item active">
+                    @*  <div class="testimonial-item"> 
+                    <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                    <h3>Saul Goodman</h3>
+                    <h4>Ceo &amp; Founder</h4>
+                    <p>
+                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                        Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                    </p>
+                    @* </div> 
+                </div>
+                <div class="carousel-item testimonial-item active">
+                    @*  <div class="testimonial-item"> 
+                    <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                    <h3>Saul Goodman</h3>
+                    <h4>Ceo &amp; Founder</h4>
+                    <p>
+                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                        Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                    </p>
+                    @* </div>
+                </div>
+            </div>
+         @*    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</section> *@
+
+<!-- End Testimonials Section -->
+
+      
+
+
+<!-- ======= Footer ======= -->
+
+<footer id="footer">
+    <div class="container">
+        <h3>Lorraine Connell</h3>
+        <p>Yoga for flexibility and strength for everyday life … for relaxation … and for fun</p>
+        <div class="social-links">
+            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+        <div class="copyright">
+            &copy; Copyright <strong><span>Lorraine Connell</span></strong>. All Rights Reserved
+        </div>
+
+    </div>
+</footer><!-- End Footer -->
+
+<a id="back-to-top" href="#" class="back-to-top d-flex align-items-center justify-content-center @BackToTopMenuCssClassActive"><i class="bi bi-arrow-up-short"></i></a>
+
+@code {
+
+    private IJSObjectReference? _jsModule;
+
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? null : "navbar-mobile";
+
+    private string @CloseMenuCssClass => collapseNavMenu ? "d-none" : "d-flex";
+
+
+
+    private bool homeMenuActive = true;
+    private bool aboutMenuActive = false;
+    private bool classesMenuActive = false;
+    private bool contactMenuActive = false;
+    private bool testimonialMenuActive = false;
+    private string? HomeMenuCssClassActive => homeMenuActive ? "active" : null;
+    private string? AboutMenuCssClassActive => aboutMenuActive ? "active" : null;
+    private string? ClassesMenuCssClassActive => classesMenuActive ? "active" : null;
+    private string? ContactMenuCssClassActive => contactMenuActive ? "active" : null;
+    private string? TestimomialMenuCssClassActive => testimonialMenuActive ? "active" : null;
+
+    private bool backToTopActive = false;
+    private string? BackToTopMenuCssClassActive => backToTopActive ? "active" : null;
+
+    private int counter;
+
+    private bool scrolledToContact = false; //todo: must be a better way?!
+    private bool scrolledToAbout = false; //todo: must be a better way?!
+    private bool scrolledToClasses = false;
+
+
+    protected override void OnInitialized()
+    {
+        ClassService.FirstPageDisplayClassesChanged += StateHasChanged;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Navigation.LocationChanged -= OnLocationChanged;
+        Navigation.LocationChanged += OnLocationChanged;
+
+
+        _jsModule = await JS.InvokeAsync<IJSObjectReference>("import", "../assets/js/main.js");
+
+        if (_jsModule != null)
+        {
+            AttachScrollListener();
+        }
+
+        try
+        {
+            await ClassService.GetClasses();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+
+    }
+
+    private async void OnLocationChanged(object sender, LocationChangedEventArgs e)
+    {
+        //await _jsModule.InvokeVoidAsync("showAlert", e.Location);
+
+        if (e.Location.Contains("contact"))
+        {
+
+            if (!scrolledToContact)
+            {
+                // await _jsModule.InvokeVoidAsync("showAlert", "Scroll Now!");
+                await _jsModule.InvokeVoidAsync("scrollToContact");
+                scrolledToContact = true;
+            }
+        }
+        if (e.Location.Contains("classes"))
+        {
+
+            if (!scrolledToClasses)
+            {
+                // await _jsModule.InvokeVoidAsync("showAlert", "Scroll Now!");
+                await _jsModule.InvokeVoidAsync("scrollToClasses");
+                scrolledToClasses = true;
+            }
+        }
+        if (e.Location.Contains("about"))
+        {
+
+            if (!scrolledToAbout)
+            {
+                // await _jsModule.InvokeVoidAsync("showAlert", "Scroll Now!");
+                await _jsModule.InvokeVoidAsync("scrollToAbout");
+                scrolledToAbout = true;
+            }
+        }
+
+
+    }
+
+    async Task AttachScrollListener()
+    {
+        //selfReference = DotNetObjectReference.Create(this);
+        var minInterval = 500; // Only notify every 500 ms
+        await _jsModule.InvokeVoidAsync("onPageScroll", minInterval);
+    }
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    private void CloseNavMenu()
+    {
+        if (collapseNavMenu == false)
+            collapseNavMenu = true;
+    }
+
+    private void ScrollToAboutAndCloseNamMenu()
+    {
+        _jsModule.InvokeVoidAsync("scrollToAbout");
+
+        homeMenuActive = false;
+        classesMenuActive = false;
+        contactMenuActive = false;
+        aboutMenuActive = true;
+
+        CloseNavMenu();
+    }
+
+    private void ScrollToClassesAndCloseNamMenu()
+    {
+        _jsModule.InvokeVoidAsync("scrollToClasses");
+
+        homeMenuActive = false;
+        contactMenuActive = false;
+        classesMenuActive = true;
+        aboutMenuActive = false;
+
+        CloseNavMenu();
+    }
+
+    private void ScrollToContactAndCloseNamMenu()
+    {
+        _jsModule.InvokeVoidAsync("scrollToContact");
+
+        homeMenuActive = false;
+        aboutMenuActive = false;
+        contactMenuActive = true;
+        classesMenuActive = false;
+
+        CloseNavMenu();
+    }
+
+    private void HandleHomeClick()
+    {
+
+        homeMenuActive = true;
+        aboutMenuActive = false;
+        contactMenuActive = false;
+        classesMenuActive = false;
+        
+        CloseNavMenu();
+    }
+
+
+    private void OnScroll()
+    {
+        counter++;
+    }
+
+}
