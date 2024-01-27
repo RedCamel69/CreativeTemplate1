@@ -1,5 +1,7 @@
 # Creative Template 1 Blazor Starter Application
 
+Update Me!
+
 THis template demonstrates the incorporation of a Bootstrap 5 template into a blazor application targeting the Azure Static Web Apps platform. This template contains an example .NET 7 [Blazor WebAssembly](https://docs.microsoft.com/aspnet/core/blazor/?view=aspnetcore-6.0#blazor-webassembly) client application, a .NET 6 C# [Azure Functions](https://docs.microsoft.com/azure/azure-functions/functions-overview), and a C# class library with shared code.
 cution model
 
